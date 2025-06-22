@@ -1,1 +1,1 @@
-# Web-Dev-Grind
+Starting my web development journey with Hitesh Choudhary's course. This repository will contain all the code files and projects covered throughout the course.
