@@ -287,3 +287,256 @@ Selectors are how you **target HTML elements** in CSS to apply styles.
 > ✅ Mastering selectors early will make writing CSS much more powerful and flexible.
 
 ---
+
+## 🧱 The CSS Box Model & `box-sizing: border-box`
+
+### 📦 Default Behavior (`content-box`)
+
+By default, the total width of an element is calculated as:
+
+```
+Total Width = content + padding + border
+```
+
+So if you set `width: 200px` and `padding: 10px`, the actual width becomes 220px.
+
+---
+
+### ✅ `box-sizing: border-box`
+
+When you set:
+
+```css
+* {
+  box-sizing: border-box;
+}
+```
+
+Now, the `padding` and `border` are **included** in the total width/height.
+
+So:
+
+```
+Total Width = exactly what you set
+```
+
+📌 Makes layout predictable and easier to manage.
+
+---
+
+## 🌳 HTML Tree Structure: Parent, Child, Descendant
+
+### 🧠 DOM is a Tree
+
+Every HTML document is a **tree structure**, where:
+
+- Elements can be **parents** (they wrap other elements)
+- **Children** are directly inside parents
+- **Descendants** are children, grandchildren, etc.
+
+```html
+<div class="parent">
+  <div class="child">
+    <p>I'm a descendant of the parent</p>
+  </div>
+</div>
+```
+
+- `.parent` → parent
+- `.child` → child of `.parent`
+- `<p>` → descendant of both `.parent` and `.child`
+
+> ✅ Understanding this helps in using selectors properly and avoiding styling conflicts.
+
+---
+
+## 🎯 CSS Selectors: From Basic to Advanced
+
+Selectors are how you **target elements** to apply styles.
+
+---
+
+### 🔹 1. Universal Selector (`*`)
+
+Selects **all elements**.
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+}
+```
+
+---
+
+### 🔹 2. Type Selector (Element)
+
+Targets all elements of a specific type.
+
+```css
+p {
+  font-size: 16px;
+}
+```
+
+---
+
+### 🔹 3. Class Selector (`.`)
+
+Targets all elements with a specific class.
+
+```css
+.button {
+  background-color: blue;
+}
+```
+
+---
+
+### 🔹 4. ID Selector (`#`)
+
+Targets a **unique element** with a specific ID.
+
+```css
+#header {
+  background-color: black;
+}
+```
+
+---
+
+### 🔹 5. Attribute Selector (`[]`)
+
+Targets elements based on the presence or value of an attribute.
+
+```css
+input[type="text"] {
+  border: 1px solid gray;
+}
+```
+
+---
+
+### 🔹 6. Grouping Selector (`,`)
+
+Apply same styles to **multiple elements**.
+
+```css
+h1,
+h2,
+h3 {
+  font-family: Arial;
+}
+```
+
+---
+
+### 🔹 7. Descendant Selector (Space)
+
+Targets elements **nested inside** another element.
+
+```css
+.card p {
+  color: gray;
+}
+```
+
+---
+
+### 🔹 8. Child Selector (`>`)
+
+Targets **direct children only**.
+
+```css
+.card > p {
+  font-weight: bold;
+}
+```
+
+---
+
+### 🔹 9. Adjacent Sibling Selector (`+`)
+
+Targets an element that **immediately follows** another.
+
+```css
+h2 + p {
+  color: red;
+}
+```
+
+---
+
+### 🔹 10. General Sibling Selector (`~`)
+
+Targets all siblings that come **after** a specified element.
+
+```css
+h2 ~ p {
+  color: green;
+}
+```
+
+---
+
+### 🔹 11. Pseudo-Classes (`:`)
+
+Target elements based on **state**.
+
+```css
+a:hover {
+  text-decoration: underline;
+}
+input:focus {
+  border-color: blue;
+}
+```
+
+Common pseudo-classes:
+
+- `:hover`
+- `:focus`
+- `:active`
+- `:nth-child()`
+- `:first-child`
+
+---
+
+### 🔹 12. Pseudo-Elements (`::`)
+
+Style **parts of elements** (virtual elements).
+
+```css
+p::first-line {
+  font-weight: bold;
+}
+div::before {
+  content: "👉 ";
+}
+```
+
+Common pseudo-elements:
+
+- `::before`
+- `::after`
+- `::first-line`
+- `::first-letter`
+
+---
+
+## ✅ Summary Table
+
+| Selector Type    | Example              | Description                       |
+| ---------------- | -------------------- | --------------------------------- |
+| Universal        | `*`                  | All elements                      |
+| Type             | `p`                  | All `<p>` tags                    |
+| Class            | `.btn`               | Elements with class="btn"         |
+| ID               | `#header`            | Element with id="header"          |
+| Attribute        | `input[type="text"]` | Inputs of type text               |
+| Grouping         | `h1, h2`             | Multiple elements                 |
+| Descendant       | `.card p`            | All `<p>` inside `.card`          |
+| Child            | `.card > p`          | Direct child `<p>` inside `.card` |
+| Adjacent Sibling | `h2 + p`             | First `<p>` right after an `<h2>` |
+| General Sibling  | `h2 ~ p`             | All `<p>` after `<h2>`            |
+| Pseudo-Class     | `a:hover`            | When `<a>` is hovered             |
+| Pseudo-Element   | `p::first-line`      | Style the first line of `<p>`     |
