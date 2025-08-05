@@ -165,3 +165,125 @@ To apply styles **to specific elements**, we use **classes and IDs**.
 | Use Case     | Styling groups of elements   | Targeting a unique element |
 
 ---
+
+## 🌱 Good-to-Know Early CSS Concepts
+
+These concepts will be covered in more detail later, but having a basic understanding of them now will help you **write better CSS from the start**.
+
+---
+
+### 1️⃣ 🧾 Margin vs Padding — The Box Model Basics
+
+- **Margin** = space **outside** the element (pushes elements apart)
+- **Padding** = space **inside** the element (between content and border)
+
+📌 Example:
+
+```css
+box {
+  margin: 20px;
+  padding: 10px;
+}
+```
+
+🧠 Think of:
+
+- Padding = element’s **internal breathing space**
+- Margin = element’s **external social distancing**
+
+---
+
+### 2️⃣ 🧭 Viewport Units (vh, vw)
+
+- `vh` = **viewport height**
+- `vw` = **viewport width**
+- 1vh = 1% of the height of the browser window
+
+📌 Example:
+
+```css
+.fullscreen-section {
+  height: 100vh;
+}
+```
+
+✅ Useful for:
+
+- Full-screen hero sections
+- Responsive layouts without fixed px units
+
+---
+
+### 3️⃣ 🧠 Resetting Default Spacing (Margin & Padding)
+
+- Browsers apply default `margin` and `padding` to many elements (`body`, `h1`, `ul`, etc.)
+- It's good practice to **reset these to `0`** at the start of every project.
+
+📌 Example:
+
+```css
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+```
+
+> ✅ `box-sizing: border-box` ensures that padding and border don't increase element width/height unexpectedly.
+
+---
+
+### 4️⃣ 🎯 Centering Elements Using Flexbox
+
+One of the most common layout tasks in CSS.
+
+📌 Center horizontally:
+
+```css
+.container {
+  display: flex;
+  justify-content: center;
+}
+```
+
+📌 Center vertically:
+
+```css
+.container {
+  display: flex;
+  align-items: center;
+  height: 100vh;
+}
+```
+
+📌 Center both:
+
+```css
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+```
+
+> Works great for centering modals, sections, text blocks, etc.
+
+---
+
+### 5️⃣ 🏷️ Basic CSS Selectors
+
+Selectors are how you **target HTML elements** in CSS to apply styles.
+
+| Selector Type | Syntax       | Targets                         |
+| ------------- | ------------ | ------------------------------- |
+| Element       | `p`          | All `<p>` tags                  |
+| Class         | `.btn`       | All elements with `class="btn"` |
+| ID            | `#header`    | The element with `id="header"`  |
+| Universal     | `*`          | All elements                    |
+| Grouping      | `h1, h2, h3` | All those elements              |
+| Descendant    | `.card p`    | All `<p>` inside `.card`        |
+
+> ✅ Mastering selectors early will make writing CSS much more powerful and flexible.
+
+---
