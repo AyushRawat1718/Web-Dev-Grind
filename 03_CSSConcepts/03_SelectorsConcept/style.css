@@ -1,0 +1,79 @@
+/* 1. Universal Selector */
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+
+/* 2. Type Selector */
+p {
+  font-size: 16px;
+  margin: 10px;
+}
+
+/* 3. Class Selector */
+.highlight {
+  background-color: #21a2c9;
+}
+
+/* 4. ID Selector */
+#header {
+  background-color: #e01010;
+}
+
+/* 5. Attribute Selector */
+input[type="text"] {
+  border: 2px dotted red;
+}
+
+/* 6. Descendant Selector */
+/* Note in case of CSS when dealing with descendant selector read from right to left instead of left to right */
+/* Like here we read like all the paragraph inside the article */
+
+article p {
+  background-color: #2c2424;
+  color: white;
+}
+
+/* 7. Child Selector */
+div > p {
+  background-color: #bd7c7c;
+}
+
+/* 8. Adjacent Sibling Selector */
+/* Same goes for this too, read from right to left */
+/* Like here it means all the para that are adjacent sibling of the h1 heading */
+
+h1 + p {
+  font-weight: bold;
+}
+
+/* 9. General Sibling Selector */
+/* Same goes for this too, read from right to left */
+/* Like here it means all the para that are sibling to h2, whether it is adjacent or not */
+
+h2 ~ p {
+  color: pink;
+}
+
+/* 10. Pseudo-class Selector */
+a:hover {
+  background-color: #aa3131;
+  text-decoration: none;
+  color: aqua;
+  padding: 5px;
+  margin: 5px;
+}
+
+/* 11. Pseudo-element Selector */
+p::first-letter {
+  font-weight: bolder;
+}
+
+/* 12. Grouping Selector */
+
+h1,
+h2,
+h3 {
+  color: orange;
+}
