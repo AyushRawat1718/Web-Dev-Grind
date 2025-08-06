@@ -288,42 +288,6 @@ Selectors are how you **target HTML elements** in CSS to apply styles.
 
 ---
 
-## 🧱 The CSS Box Model & `box-sizing: border-box`
-
-### 📦 Default Behavior (`content-box`)
-
-By default, the total width of an element is calculated as:
-
-```
-Total Width = content + padding + border
-```
-
-So if you set `width: 200px` and `padding: 10px`, the actual width becomes 220px.
-
----
-
-### ✅ `box-sizing: border-box`
-
-When you set:
-
-```css
-* {
-  box-sizing: border-box;
-}
-```
-
-Now, the `padding` and `border` are **included** in the total width/height.
-
-So:
-
-```
-Total Width = exactly what you set
-```
-
-📌 Makes layout predictable and easier to manage.
-
----
-
 ## 🌳 HTML Tree Structure: Parent, Child, Descendant
 
 ### 🧠 DOM is a Tree
@@ -540,3 +504,159 @@ Common pseudo-elements:
 | General Sibling  | `h2 ~ p`             | All `<p>` after `<h2>`            |
 | Pseudo-Class     | `a:hover`            | When `<a>` is hovered             |
 | Pseudo-Element   | `p::first-line`      | Style the first line of `<p>`     |
+
+---
+
+## 🧩 Inline vs Block-level Elements
+
+HTML elements are divided into two main display types by default:
+
+---
+
+### 🧱 Block-level Elements
+
+- Take **full width** available
+- Always start on a **new line**
+- Respect `width`, `height`, `margin`, `padding`
+
+#### Examples:
+
+```
+<div>,<p>,<h1>-<h6>,<section>,<article> etc.
+```
+
+```css
+div {
+  width: 200px;
+  height: 100px;
+  background: lightblue;
+}
+```
+
+✅ This works and respects all sizes.
+
+---
+
+### 🧷 Inline Elements
+
+- Take up **only as much width as needed**
+- Don’t break into a new line
+- **Ignore width and height**
+- Respect only `left/right padding` & `margin` (not top/bottom)
+
+#### Examples:
+
+```
+<span>,<a>,<strong>, <img/> etc.
+```
+
+```css
+<span style="width: 200px; height: 100px;">Hello</span>
+```
+
+❌ Width and height will be **ignored**!
+
+---
+
+### ⚙️ Converting between types
+
+Use `display` property:
+
+```css
+span {
+  display: block; /* Now behaves like a div */
+}
+```
+
+Or
+
+```css
+div {
+  display: inline; /* Now behaves like span */
+}
+```
+
+---
+
+## 📦 Box-Sizing in CSS
+
+The `box-sizing` property controls how the total width and height of an element is calculated:
+
+---
+
+### 🧮 Two Common Values:
+
+| Value         | What It Means                                                           |
+| ------------- | ----------------------------------------------------------------------- |
+| `content-box` | **Default**. Width/height only includes **content**, not padding/border |
+| `border-box`  | Width/height includes **content + padding + border**                    |
+
+---
+
+## 🧪 Examples
+
+### 🔹 `box-sizing: content-box;` (Default)
+
+```html
+<div class="box-content">Content Box</div>
+```
+
+```css
+.box-content {
+  box-sizing: content-box;
+  width: 200px;
+  padding: 20px;
+  border: 10px solid black;
+  background-color: lightblue;
+}
+```
+
+✅ **Total width** =  
+`200 (content) + 40 (padding) + 20 (border)` = **260px**  
+→ So the box **grows bigger** than defined `width`.
+
+---
+
+### 🔸 `box-sizing: border-box;`
+
+```html
+<div class="box-border">Border Box</div>
+```
+
+```css
+.box-border {
+  box-sizing: border-box;
+  width: 200px;
+  padding: 20px;
+  border: 10px solid black;
+  background-color: lightgreen;
+}
+```
+
+✅ **Total width remains** = **200px**  
+→ Browser adjusts content width to fit within total 200px including padding & border.
+
+---
+
+## 💡 Best Practice
+
+Set globally for consistency:
+
+```css
+* {
+  box-sizing: border-box;
+}
+```
+
+> Makes layout calculations easier and more predictable across the site.
+
+---
+
+## ✅ Summary
+
+| Feature              | Inline Elements | Block Elements |
+| -------------------- | --------------- | -------------- |
+| Starts on new line   | ❌              | ✅             |
+| Takes full width     | ❌              | ✅             |
+| Accepts width/height | ❌ (ignored)    | ✅             |
+| Examples             | `<span>`, `<a>` | `<div>`, `<p>` |
