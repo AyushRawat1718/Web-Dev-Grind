@@ -95,3 +95,71 @@ JavaScript provides three ways to declare variables, each with different scoping
     ```
 
 ---
+
+## ➕ Operators in JavaScript (Brief Overview)
+
+- **Arithmetic Operators**: `+`, `-`, `*`, `/`, `%`, `**`
+- **Comparison Operators**: `==`, `===`, `!=`, `!==`, `<`, `>`, `<=`, `>=`
+- **Logical Operators**: `&&`, `||`, `!`
+- **Assignment Operators**: `=`, `+=`, `-=`, `*=`, `/=`
+- **Increment/Decrement**: `++`, `--`
+- **Ternary Operator**: `condition ? expr1 : expr2`
+
+---
+
+## 🔢 Data Types in JavaScript
+
+### 🔹 Primitive Types
+
+- **String** → `"Hello"`
+- **Number** → `42`, `3.14`
+- **Boolean** → `true` / `false`
+- **Null** → `null`
+- **Undefined** → variable declared but not assigned
+- **Symbol** → unique identifiers
+- **BigInt** → very large integers
+
+### 🔹 Non-Primitive Types (Objects)
+
+- **Object** → `{ key: "value" }`
+- **Array** → `[1, 2, 3]`
+- **Function** → `function() { ... }`
+
+⚡ Note:  
+Even if an object is declared with `const`, its internal properties **can still be modified**.
+
+```js
+const person = { name: "John", age: 25 };
+person.age = 26; // ✅ Allowed
+// person = {}   // ❌ Error: reassignment not allowed
+```
+
+---
+
+## 🔄 Type Conversion in JavaScript
+
+### 🔹 Explicit Conversion (Preferred)
+
+Converting types manually ensures predictable results:
+
+```js
+Number("123"); // 123
+String(123); // "123"
+Boolean(1); // true
+parseInt("50"); // 50
+parseFloat("3.14"); // 3.14
+```
+
+### 🔹 Explicit Conversion (Preferred)
+
+JavaScript sometimes converts types automatically in expressions:
+
+```js
+"5" + 2; // "52"   (number converted to string)
+"5" - 2; // 3      (string converted to number)
+true + 1; // 2      (boolean converted to number)
+```
+
+- 👉 Best practice: Avoid implicit conversion and always use explicit type conversion for clarity.
+
+---
