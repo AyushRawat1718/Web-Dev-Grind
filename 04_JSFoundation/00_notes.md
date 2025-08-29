@@ -213,3 +213,56 @@ true + 1; // 2      (boolean converted to number)
     ```
 
 ---
+
+## 💻 Prompt in JavaScript
+
+- `prompt()` is **only available in browsers**, not in Node.js console.
+- Reason: JavaScript started as a **browser language**, and `prompt` is part of the **Web APIs** provided by browsers.
+- In Node.js, input is handled differently (e.g., using the `readline` module).
+
+---
+
+## 🔁 Loops in JavaScript
+
+### 🔹 `while`
+
+- Runs as long as the condition is **true**.
+- Used when the number of iterations is **unknown**.
+
+### 🔹 `do...while`
+
+- Executes **at least once**, then checks condition.
+- Useful when code must run once regardless of condition.
+
+### 🔹 `for`
+
+- Best for **known number of iterations**.
+- Includes initializer, condition, and increment in one line.
+
+### 🔹 `for...of`
+
+- Iterates **over values** of an iterable (arrays, strings, maps, sets).
+- Great for array loops.
+
+### 🔹 `for...in`
+
+- Iterates **over keys (indexes or property names)**.
+- Used mostly for objects.
+
+### 🔹 `forEach`
+
+- Array method; executes a function for each element.
+- Cannot `break` early (always processes all elements).
+
+---
+
+👉 **Use-Case Summary**
+
+- **while** → unknown count, repeat until condition fails.
+- **do...while** → run at least once.
+- **for** → fixed/known count.
+- **for...of** → iterate over **values**.
+- **for...in** → iterate over **keys/properties**.
+- **forEach** → iterate over arrays, no break/continue.
+
+---
