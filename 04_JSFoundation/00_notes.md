@@ -163,3 +163,53 @@ true + 1; // 2      (boolean converted to number)
 - 👉 Best practice: Avoid implicit conversion and always use explicit type conversion for clarity.
 
 ---
+
+## ⚖️ Difference between `==` and `===`
+
+- **`==` (Loose Equality)**
+
+  - Compares **values only**.
+  - Performs **type conversion** if types are different.
+  - Example:
+    ```js
+    5 == "5"; // true
+    ```
+
+- **`===` (Strict Equality)**
+  - Compares **both value and type**.
+  - No type conversion is performed.
+  - Example:
+    ```js
+    5 === "5"; // false
+    5 === 5; // true
+    ```
+
+---
+
+## 📂 Hard Copy vs Soft Copy
+
+- **Soft Copy (Shallow Copy / Reference Copy)**
+
+  - New variable points to the **same memory address** as the original.
+  - Changes in one variable affect the other.
+  - Example:
+    ```js
+    let arr1 = [1, 2, 3];
+    let arr2 = arr1; // soft copy
+    arr2.push(4);
+    console.log(arr1); // [1, 2, 3, 4]
+    ```
+
+- **Hard Copy (Deep Copy / Independent Copy)**
+  - New variable has a **separate memory allocation**.
+  - Changes in one variable do **not** affect the other.
+  - Example:
+    ```js
+    let arr1 = [1, 2, 3];
+    let arr2 = [...arr1]; // hard copy
+    arr2.push(4);
+    console.log(arr1); // [1, 2, 3]
+    console.log(arr2); // [1, 2, 3, 4]
+    ```
+
+---
