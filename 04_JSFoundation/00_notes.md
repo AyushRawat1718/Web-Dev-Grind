@@ -266,3 +266,270 @@ true + 1; // 2      (boolean converted to number)
 - **forEach** → iterate over arrays, no break/continue.
 
 ---
+
+## ⚙️ JavaScript Execution Context
+
+- JS runs inside an **Execution Context**:
+
+  1. **Creation Phase**
+     - Memory is allocated for variables & functions.
+     - Variables are initialized with `undefined`.
+  2. **Execution Phase**
+     - Code runs line by line.
+     - Variables get assigned actual values, functions are executed.
+
+- Two types of Execution Contexts:
+  - **Global Execution Context (GEC)** → Created when JS starts, only one per program.
+  - **Function Execution Context (FEC)** → Created each time a function is called, multiple possible.
+
+---
+
+## ⚡ Types of Functions
+
+Functions in JS are blocks of code that can be reused. Two main types:
+
+### 🔹 Normal Functions
+
+- Declared with `function` keyword.
+- Can return a value or just perform an action.
+
+```js
+function greet(name) {
+  return "Hello, " + name;
+}
+console.log(greet("Ayush")); // Hello, Ayush
+```
+
+### Arrow Functions
+
+- Shorter syntax (ES6).
+- Often used for simple tasks.
+
+```js
+const square = (num) => num * num;
+console.log(square(6)); // 36
+```
+
+---
+
+## 🔥 Implicit vs Explicit Return
+
+- Explicit return → Uses `{}` and the return keyword.
+- Implicit return → Omits `{}` and automatically returns the expression.
+
+- Useful for short functions.
+
+```js
+// Explicit return
+const add = (a, b) => {
+  return a + b;
+};
+console.log(add(2, 3)); // 5
+
+// Implicit return
+const multiply = (a, b) => a * b;
+console.log(multiply(4, 5)); // 20
+```
+
+---
+
+## 🌐 `this` Context
+
+`this` is a special keyword in JavaScript that **refers to the object that is executing the current function**.
+
+Its value depends on **how the function is called**, not where it was defined.
+
+### 🖥️ In Browser
+
+- Global scope
+  - In browsers, global functions/variables belong to the `window` object.
+  - So in global scope, `this = window`.
+  ```js
+  console.log(this); // window
+  ```
+- Inside an Object Method
+  - When a function is called as an object’s method, this = that object.
+  ```js
+  const obj = {
+    name: "Ayush",
+    show() {
+      console.log(this.name);
+    },
+  };
+  obj.show(); // Ayush
+  ```
+- Event Handlers
+
+  - In DOM event handlers, this refers to the element that triggered the event.
+
+  ```js
+  document.querySelector("button").addEventListener("click", function () {
+    console.log(this); // <button> element
+  });
+  ```
+
+### 💻 In Node.js
+
+- Global scope
+
+  - In Node.js, **top-level** `this` is not global.
+  - Instead, it is an **empty object** `{}`.
+
+  ```js
+  console.log(this); // {}
+  ```
+
+- Inside a Normal Function
+
+  - In **non-strict** mode → `this` = `global`.
+
+  - In **strict** mode → `this` = `undefined`.
+
+  ```js
+  function test() {
+    console.log(this);
+  }
+  test(); // global object (or undefined in strict mode)
+  ```
+
+- Inside an Object Method
+
+  - Works the same as browser → `this = the object`.
+
+  ```js
+  const obj = {
+    name: "NodeJS",
+    show() {
+      console.log(this.name);
+    },
+  };
+  obj.show(); // NodeJS
+  ```
+
+---
+
+## ➡️ Normal Functions vs Arrow Functions
+
+### Normal Function :
+
+- Value of `this` depends on how the function is called.
+
+```js
+const obj = {
+  name: "Ayush",
+  normalFn: function () {
+    console.log(this.name);
+  },
+};
+
+obj.normalFn(); // Ayush
+```
+
+### Arrow Functions :
+
+- Arrow functions do not have their own this.
+- Instead, it inherits `this` from the scope where it was created → i.e., from its parent function/object context (lexical scope).
+
+```js
+const obj = {
+  name: "Ayush",
+  show: function () {
+    const arrowFn = () => {
+      console.log(this.name);
+    };
+    arrowFn();
+  },
+};
+
+obj.show(); // Ayush ✅ (arrowFn inherits `this` from show())
+```
+
+- `arrowFn` doesn’t have its own `this`.
+
+- It inherits this from the parent (`show` method), so `this.name` = `"Ayush"`.
+
+---
+
+## 💡 Higher-Order Functions
+
+Functions that can:
+
+- Take other functions as arguments, or
+
+- Return functions as results.
+
+This allows functional programming patterns like map, filter, reduce.
+
+```js
+// Function as parameter
+function operate(a, b, fn) {
+  return fn(a, b);
+}
+console.log(operate(5, 3, (x, y) => x + y)); // 8
+
+// Function returning another function
+function multiplier(factor) {
+  return (num) => num * factor;
+}
+const double = multiplier(2);
+console.log(double(10)); // 20
+```
+
+---
+
+## 🎯 Scope vs Closure in JavaScript
+
+### 🔹 1. Scope
+
+- **Definition**: Scope defines where variables are accessible.
+
+- JavaScript uses lexical scope (based on where the function is written).
+
+- Inner functions can access variables of their parent functions.
+
+```js
+// Scope Example
+function outer() {
+  let msg = "Hello"; // variable defined in outer
+  function inner() {
+    console.log(msg); // inner can "see" msg because of scope
+  }
+  inner();
+}
+outer(); // Output: Hello
+```
+
+👉 Here, `inner()` can access `msg` because of lexical scope.
+
+### 🔹 2. Closure
+
+- **Definition**: A closure is formed when a function remembers variables from its parent scope, even after the parent function has finished executing.
+
+- It’s like the function **“carries”** its surrounding scope along with it.
+
+```js
+// Closure Example
+function counter() {
+  let count = 0; // private variable
+  return function () {
+    // inner function (closure)
+    return ++count; // remembers `count`
+  };
+}
+
+const c = counter(); // counter() finished, but `count` is preserved
+console.log(c()); // 1
+console.log(c()); // 2
+console.log(c()); // 3
+```
+
+👉 count is not lost even though counter() has returned.
+That’s because the inner function (closure) preserves the lexical scope of counter.
+
+### ⚖️ Difference (Easy Way)
+
+**Scope** → decides where a variable can be accessed.
+
+**Closure** → when an inner function remembers variables from its parent scope even after the parent is gone.
+
+---
