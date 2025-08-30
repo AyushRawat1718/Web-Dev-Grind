@@ -533,3 +533,5 @@ That’s because the inner function (closure) preserves the lexical scope of cou
 **Closure** → when an inner function remembers variables from its parent scope even after the parent is gone.
 
 ---
+
+## Important Reference => [Spread Opearator in js](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Spread_syntax)
