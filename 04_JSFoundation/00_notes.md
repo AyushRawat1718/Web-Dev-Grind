@@ -535,3 +535,85 @@ That’s because the inner function (closure) preserves the lexical scope of cou
 **Closure** → when an inner function remembers variables from its parent scope even after the parent is gone.
 
 ---
+
+## 🔹Some Important Concepts
+
+### 1️⃣ `forEach` vs `map`
+
+#### `forEach`
+
+- Executes a function on each element.
+- **Does NOT return a new array**.
+- Used for **side-effects** like logging.
+
+```js
+const arr = [1, 2, 3];
+arr.forEach((e) => console.log(e * 2));
+// Output: 2, 4, 6 (printed individually)
+```
+
+#### `map`
+
+- **Executes a function on each element and** **returns a new array**.
+- Use it when you need a transformed array.
+
+```js
+const arr = [1, 2, 3];
+const squared = arr.map((e) => e * e);
+console.log(squared); // Output: [1, 4, 9]
+```
+
+### 2️⃣ `filter`
+
+- Returns a new array with elements that satisfy a condition.
+
+```js
+const numbers = [1, 2, 3, 4, 5];
+const evenNumbers = numbers.filter((n) => n % 2 === 0);
+console.log(evenNumbers); // Output: [2, 4]
+```
+
+### 3️⃣ `reduce`
+
+- Reduces an array to a **single value**.
+
+- Syntax: `arr.reduce((acc, val) => { ... }, initialValue)`
+
+**Sum of positive numbers**
+
+```js
+const nums = [-1, 2, 3, -5];
+const sumPositive = nums.reduce((sum, e) => (e > 0 ? sum + e : sum), 0);
+console.log(sumPositive); // Output: 5
+```
+
+**Find the longest word**
+
+```js
+const words = ["cat", "elephant", "dog"];
+const longest = words.reduce(
+  (longest, word) => (word.length > longest.length ? word : longest),
+  ""
+);
+console.log(longest); // Output: "elephant"
+```
+
+### 4️⃣ Accessing properties from objects in arrays
+
+- Use map to extract properties from objects.
+
+```js
+const users = [{ name: "Alice" }, { name: "Bob" }, { name: "Charlie" }];
+const names = users.map((user) => user.name);
+console.log(names); // Output: ["Alice", "Bob", "Charlie"]
+```
+
+### Tips to Remember
+
+- **`map`** → new transformed array.
+
+- **`filter`** → subset of array.
+
+- **`reduce`** → single aggregated value.
+
+- **`forEach`** → only for side-effects.
